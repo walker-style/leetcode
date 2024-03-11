@@ -4,11 +4,42 @@ Place for solutions and workings to leetcode 75 challenges
 from typing import List
 
 
-class SeventyFive: # pylint: disable=too-few-public-methods
+class SeventyFive:  # pylint: disable=too-few-public-methods
     """
     Class to capture answers to leet code 75 challenges
     """
-    
+
+    def reverse_vowels(self, s: str) -> str:
+        """
+        Reverses the vowels of a string and returns string
+
+        Args:
+            s str: string to have vowels reversed
+
+        Return:
+            str: the string with reversed vowels
+
+        >>> leet = SeventyFive()
+        >>> leet.reverse_vowels("Hello")
+        'Holle'
+
+        >>> leet.reverse_vowels("leetcode")
+        'leotcede'
+        """
+
+        vowels = "aeiouAEIOU"
+
+        reversed_vowels = [letter for letter in s if letter in vowels]
+        reversed_word = ""
+
+        for letter in s:
+            if letter in vowels:
+                reversed_word += reversed_vowels.pop()
+            else:
+                reversed_word += letter
+
+        return reversed_word
+
     def can_place_flowers(self, flowerbed: List[int], n: int) -> bool:
         """
         Returns if flowers can be placed in a garden
@@ -30,17 +61,18 @@ class SeventyFive: # pylint: disable=too-few-public-methods
         if n == 0:
             return True
         count = 0
-        for i in range(len(flowerbed)):
-            
-            if not(sum(flowerbed[max(i-1,0):min(len(flowerbed)+1,i+2)])):
+        for i, _ in enumerate(flowerbed):
+            if not sum(flowerbed[max(i - 1, 0) : min(len(flowerbed) + 1, i + 2)]):
                 flowerbed[i] = 1
                 count += 1
                 if count == n:
                     return True
         return False
-                
 
-    def greatest_candies(self, candies: List[int], extraCandies: int) -> List[bool]: # pylint: disable=C0103
+    def greatest_candies(
+        self, candies: List[int], extraCandies: int # pylint: disable=C0103
+
+    ) -> List[bool]:
         """
         Return which children if given extra candies would have the most candies
 
