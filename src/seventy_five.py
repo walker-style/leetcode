@@ -9,6 +9,37 @@ class SeventyFive:  # pylint: disable=too-few-public-methods
     Class to capture answers to leet code 75 challenges
     """
 
+    def increasing_triplet(self, nums: list[int]) -> bool:
+        """
+        Return True if there exists three ascending values
+        for which their indicies also increase
+
+        Args:
+            nums list[int]: numbers to check
+
+        Returns:
+            bool: existence of triplet or not
+
+        >>> leet = SeventyFive()
+        >>> leet.increasing_triplet(nums = [1,2,3,4,5])
+        True
+
+        >>> leet.increasing_triplet(nums = [5,4,3,2,1])
+        False
+
+        >>> leet.increasing_triplet(nums = [2,1,5,0,4,6])
+        True
+        """
+
+        if len(set(nums)) < 3:
+            return False
+        for i, num in enumerate(nums):
+            for j, next_num in enumerate(nums[i + 1 :]):
+                if num < next_num:
+                    if next_num < max(nums[i + j + 2 :]):
+                        return True
+        return False
+
     def product_except_self(self, nums: list[int]) -> list[int]:
         """
         Gives product of all other elements
