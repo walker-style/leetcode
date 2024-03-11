@@ -9,6 +9,29 @@ class SeventyFive:  # pylint: disable=too-few-public-methods
     Class to capture answers to leet code 75 challenges
     """
 
+    def reverse_string(self, s: str) -> str:
+        """
+        Reverse words in a string
+
+        Args:
+            s str: string to be reversed
+
+        Returns:
+            str: reversed string
+
+        >>> leet = SeventyFive()
+        >>> leet.reverse_string(s = "the sky is blue")
+        'blue is sky the'
+
+        >>> leet.reverse_string(s = "  hello world  ")
+        'world hello'
+
+        >>> leet.reverse_string(s = "a good   example")
+        'example good a'
+        """
+
+        return " ".join([w for w in s.split(" ")[::-1] if w])
+
     def reverse_vowels(self, s: str) -> str:
         """
         Reverses the vowels of a string and returns string
@@ -70,8 +93,7 @@ class SeventyFive:  # pylint: disable=too-few-public-methods
         return False
 
     def greatest_candies(
-        self, candies: List[int], extraCandies: int # pylint: disable=C0103
-
+        self, candies: List[int], extraCandies: int  # pylint: disable=C0103
     ) -> List[bool]:
         """
         Return which children if given extra candies would have the most candies
