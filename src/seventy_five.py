@@ -4,7 +4,7 @@ Place for solutions and workings to leetcode 75 challenges
 from typing import List
 
 
-class Leet: # pylint: disable=too-few-public-methods
+class SeventyFive: # pylint: disable=too-few-public-methods
     """
     Class to capture answers to leet code 75 challenges
     """
@@ -20,7 +20,7 @@ class Leet: # pylint: disable=too-few-public-methods
         Return:
             List[bool]: list of kids that have most candies if given extraCandies
 
-        >>> leet = Leet()
+        >>> leet = SeventyFive()
         >>> first = leet.greatest_candies(candies = [2,3,5,1,3], extraCandies = 3)
         >>> assert(first == [True, True, True, False, True])
 
