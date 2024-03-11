@@ -8,6 +8,37 @@ class SeventyFive: # pylint: disable=too-few-public-methods
     """
     Class to capture answers to leet code 75 challenges
     """
+    
+    def can_place_flowers(self, flowerbed: List[int], n: int) -> bool:
+        """
+        Returns if flowers can be placed in a garden
+
+        Args:
+            flowerbed List[int]: represents plots 1 have plant 0 are empty
+            n int: number of potential plants to plant
+
+        Returns:
+            bool: if potential plants can be planted
+
+        >>> leet = SeventyFive()
+        >>> leet.can_place_flowers(flowerbed = [1,0,0,0,1], n = 1)
+        True
+
+        >>> leet.can_place_flowers(flowerbed = [1,0,0,0,1], n = 2)
+        False
+        """
+        if n == 0:
+            return True
+        count = 0
+        for i in range(len(flowerbed)):
+            
+            if not(sum(flowerbed[max(i-1,0):min(len(flowerbed)+1,i+2)])):
+                flowerbed[i] = 1
+                count += 1
+                if count == n:
+                    return True
+        return False
+                
 
     def greatest_candies(self, candies: List[int], extraCandies: int) -> List[bool]: # pylint: disable=C0103
         """
