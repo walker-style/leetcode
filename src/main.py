@@ -4,7 +4,7 @@ https://leetcode.com/walker-style/
 """
 
 
-class Daily: # pylint: disable=too-few-public-methods
+class Daily:  # pylint: disable=too-few-public-methods
     """
     Class to house daily leetcode challenges
     """
