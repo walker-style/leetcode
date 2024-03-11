@@ -9,6 +9,40 @@ class SeventyFive:  # pylint: disable=too-few-public-methods
     Class to capture answers to leet code 75 challenges
     """
 
+    def product_except_self(self, nums: list[int]) -> list[int]:
+        """
+        Gives product of all other elements
+
+        Args:
+            nums list[int]: list of numbers to be producted except self
+
+        Returns
+            list[int]: products excluding self
+
+        >>> leet = SeventyFive()
+        >>> leet.product_except_self(nums = [1,2,3,4])
+        [24, 12, 8, 6]
+
+        >>> leet.product_except_self( nums = [-1,1,0,-3,3])
+        [0, 0, 9, 0, 0]
+        """
+        product = 1
+        result = None
+        for num in nums:
+            if num:
+                product *= num
+
+        if 0 in nums:
+            result = [0 if num else product for num in nums]
+        else:
+            result = [int(product / num) for num in nums]
+
+        if 0 in nums:
+            nums.remove(0)
+            if 0 in nums:
+                return [0 for _ in range(len(nums) + 1)]
+        return result
+
     def reverse_string(self, s: str) -> str:
         """
         Reverse words in a string
