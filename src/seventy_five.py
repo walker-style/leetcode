@@ -9,6 +9,53 @@ class SeventyFive:  # pylint: disable=too-few-public-methods
     Class to capture answers to leet code 75 challenges
     """
 
+    def compress(self, chars: list[str]) -> int:
+        """
+        compressed version of string, grouping like characters
+
+        Args:
+            chars list[str]: characters to compress
+
+        Returns:
+            int: length of compressed list
+
+        >>> leet = SeventyFive()
+        >>> leet.compress(chars = ["a","a","b","b","c","c","c"])
+        6
+
+        >>> leet.compress(chars = ["a"])
+        1
+
+        >>> leet.compress(chars = ["a","b","b","b","b","b","b","b","b","b","b","b","b"])
+        4
+        """
+
+        length = len(chars)
+        index = 0
+        total = 0
+
+        while total + 1 < length:
+            count = 1
+            while chars[index] == chars[index + count]:
+                count += 1
+                if count + total == length:
+                    break
+            if count == 1:
+                index += 1
+                total += 1
+                continue
+
+            arr_count = list(str(count))
+            for i, a in enumerate(arr_count):
+                chars[index + 1 + i] = a
+
+            for i in range(count - 1 - len(arr_count)):
+                chars.pop(index + 1 + len(arr_count))
+            index += len(arr_count) + 1
+            total += count
+
+        return len(chars)
+
     def increasing_triplet(self, nums: list[int]) -> bool:
         """
         Return True if there exists three ascending values
