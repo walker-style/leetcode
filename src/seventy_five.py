@@ -9,6 +9,31 @@ class SeventyFive:  # pylint: disable=too-few-public-methods
     Class to capture answers to leet code 75 challenges
     """
 
+    def move_zeros(self, nums: list[int]) -> None:
+        """
+        in place move zeros to end of list without moving other numbers
+
+        Args:
+            nums list[int]: numbers to be sorted
+
+        Returns:
+            None: list is sorted in place
+
+        >>> leet = SeventyFive()
+        >>> nums = [0,1,0,3,12]
+        >>> leet.move_zeros(nums)
+        >>> assert nums == [1,3,12,0,0]
+        """
+
+        count = 0
+
+        while 0 in nums:
+            nums.remove(0)
+            count += 1
+
+        for _ in range(count):
+            nums.append(0)
+
     def compress(self, chars: list[str]) -> int:
         """
         compressed version of string, grouping like characters
