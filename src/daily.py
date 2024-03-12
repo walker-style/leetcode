@@ -62,15 +62,31 @@ class Daily:  # pylint: disable=too-few-public-methods
         [1]
         """
 
-
+        dummy = ListNode(0)
+        dummy.next = head
+        prefix_sum = 0
+        prefix_sum_map = {}
         
-        if not head:
-            return head
+        current = dummy
         
-        result = None
+        while current:
+            prefix_sum += current.val
+            prefix_sum_map[prefix_sum] = current
+            current = current.next
+        
+        current = dummy
+        prefix_sum = 0
+        
+        while current:
+            prefix_sum += current.val
+            if prefix_sum in prefix_sum_map:
+                current.next = prefix_sum_map[prefix_sum].next
+            current = current.next
+        
+        return dummy.next
 
-            
-        return result
+
+
 
     def custom_sort_string(self, order: str, s: str) -> str:
         """
