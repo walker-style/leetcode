@@ -9,6 +9,45 @@ class SeventyFive:  # pylint: disable=too-few-public-methods
     Class to capture answers to leet code 75 challenges
     """
 
+    def max_area(self, height: list[int]) -> int:
+        """
+        Gives max area of virtically filling a liquid
+        between two heights.
+
+        Args:
+            height list[int]: various heights to choose between
+            (placed 1 unit apart)
+
+        Returns:
+            int: the max area / volume
+
+        >>> leet = SeventyFive()
+        >>> leet.max_area(height = [1,8,6,2,5,4,8,3,7])
+        49
+
+        >>> leet.max_area(height=[1,1])
+        1
+        """
+
+        max_area = 0
+        left, right = 0, len(height) - 1
+        while left < right:
+            width = right - left
+            max_area = max(max_area, width * min(height[left], height[right]))
+            if height[left] < height[right]:
+                left += 1
+            else:
+                right -= 1
+        return max_area
+        # max = 0
+        # for i, h in enumerate(height):
+        #     for j, e in enumerate(height[i + 1:]):
+        #         volume = (j + 1) * min(h, e)
+        #         if volume > max:
+        #             max = volume
+        #
+        # return max
+
     def is_subsequence(self, s: str, t: str) -> bool:
         """
         Is s a subsequence of t. By removing 0 or more letters can `t` be

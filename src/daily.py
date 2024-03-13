@@ -13,14 +13,14 @@ class ListNode:  # pylint: disable=too-few-public-methods
     ListNode to define node for exercise
     """
 
-    def __init__(self, val=0, next=None): # pylint: disable=W0622
+    def __init__(self, val=0, next=None):  # pylint: disable=W0622
         self.val = val
         self.next = next
 
     def __repr__(self):  # pylint: disable=W0622
         arr = [self.val]
         while self.next:
-            self = self.next # pylint: disable=W0642
+            self = self.next  # pylint: disable=W0642
             arr.append(self.val)
         return str(arr)
 
