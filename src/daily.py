@@ -13,19 +13,19 @@ class ListNode:  # pylint: disable=too-few-public-methods
     ListNode to define node for exercise
     """
 
-    def __init__(self, val=0, next=None):
+    def __init__(self, val=0, next=None): # pylint: disable=W0622
         self.val = val
         self.next = next
 
-    def __repr__(self):
+    def __repr__(self):  # pylint: disable=W0622
         arr = [self.val]
         while self.next:
-            self = self.next
+            self = self.next # pylint: disable=W0642
             arr.append(self.val)
         return str(arr)
 
 
-class LinkedListFactory: # pylint: disable=too-few-public-methods
+class LinkedListFactory:  # pylint: disable=too-few-public-methods
 
     """
     Easy way to make linked list from array
@@ -53,6 +53,35 @@ class Daily:  # pylint: disable=too-few-public-methods
     """
     Class to house daily leetcode challenges
     """
+
+    def pivot_integer(self, n: int) -> int:
+        """
+        Finds the pivot integer.
+
+        Args:
+            n int: produces a range from 1 to n from which to find the
+                pivot integer
+
+        Returns:
+            int: pivot integer if it exists or -1 if it does not
+
+        >>> leet = Daily()
+        >>> leet.pivot_integer(n=8)
+        6
+
+        >>> leet.pivot_integer(n=1)
+        1
+
+        >>> leet.pivot_integer(n=4)
+        -1
+        """
+
+        array = list(range(1, n + 1))
+
+        for i, number in enumerate(array):
+            if sum(array[: i + 1]) == sum(array[i:]):
+                return number
+        return -1
 
     def remove_zero_sum_sublist(self, head: Optional[ListNode]) -> Optional[ListNode]:
         """
