@@ -9,6 +9,41 @@ class SeventyFive:  # pylint: disable=too-few-public-methods
     Class to capture answers to leet code 75 challenges
     """
 
+    def is_subsequence(self, s: str, t: str) -> bool:
+        """
+        Is s a subsequence of t. By removing 0 or more letters can `t` be
+        transformed into `s`.
+
+        Args:
+            s str: subsequence string
+            t str: string to check if i can be subsquences.
+
+        Returns:
+            bool: is s a subsequence of t
+
+        >>> leet = SeventyFive()
+        >>> leet.is_subsequence( s = "abc", t = "ahbgdc")
+        True
+
+        >>> leet.is_subsequence("axc", t = "ahbgdc")
+        False
+        """
+        if not s:
+            return True
+
+        for i, s_char in enumerate(s):
+            for j, t_char in enumerate(t):
+                if s_char == t_char:
+                    if i + 1 == len(s):
+                        return True
+                    if j + 1 == len(t):
+                        return False
+                    t = t[j + 1 :]
+                    break
+                if j + 1 == len(t):
+                    return False
+        return False
+
     def move_zeros(self, nums: list[int]) -> None:
         """
         in place move zeros to end of list without moving other numbers

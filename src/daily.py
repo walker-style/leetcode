@@ -5,8 +5,14 @@ https://leetcode.com/walker-style/
 
 from typing import Optional
 
+
 # Definition for singly-linked list.
-class ListNode:
+class ListNode:  # pylint: disable=too-few-public-methods
+
+    """
+    ListNode to define node for exercise
+    """
+
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
@@ -18,9 +24,19 @@ class ListNode:
             arr.append(self.val)
         return str(arr)
 
-class LinkedListFactory:
+
+class LinkedListFactory: # pylint: disable=too-few-public-methods
+
+    """
+    Easy way to make linked list from array
+    """
+
     @staticmethod
     def create_from_array(array):
+        """
+        Turn array into linked list
+        """
+
         if not array:
             return None
 
@@ -46,14 +62,14 @@ class Daily:  # pylint: disable=too-few-public-methods
             head Optional[ListNode]: node from which to start checking for zero sum sequences
 
         Return:
-           Optional[ListNode]: list with no consecutive zero sum nodes 
+           Optional[ListNode]: list with no consecutive zero sum nodes
 
         >>> leet = Daily()
-        >>> head = LinkedListFactory.create_from_array([1,2,-3,3,1]) 
+        >>> head = LinkedListFactory.create_from_array([1,2,-3,3,1])
         >>> leet.remove_zero_sum_sublist(head = head)
         [3, 1]
 
-        >>> head = LinkedListFactory.create_from_array([1,2,3,-3,4]) 
+        >>> head = LinkedListFactory.create_from_array([1,2,3,-3,4])
         >>> leet.remove_zero_sum_sublist(head = head)
         [1, 2, 4]
 
@@ -66,27 +82,24 @@ class Daily:  # pylint: disable=too-few-public-methods
         dummy.next = head
         prefix_sum = 0
         prefix_sum_map = {}
-        
+
         current = dummy
-        
+
         while current:
             prefix_sum += current.val
             prefix_sum_map[prefix_sum] = current
             current = current.next
-        
+
         current = dummy
         prefix_sum = 0
-        
+
         while current:
             prefix_sum += current.val
             if prefix_sum in prefix_sum_map:
                 current.next = prefix_sum_map[prefix_sum].next
             current = current.next
-        
+
         return dummy.next
-
-
-
 
     def custom_sort_string(self, order: str, s: str) -> str:
         """
