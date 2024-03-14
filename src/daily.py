@@ -4,55 +4,63 @@ https://leetcode.com/walker-style/
 """
 
 from typing import Optional
-
-
-# Definition for singly-linked list.
-class ListNode:  # pylint: disable=too-few-public-methods
-
-    """
-    ListNode to define node for exercise
-    """
-
-    def __init__(self, val=0, next=None):  # pylint: disable=W0622
-        self.val = val
-        self.next = next
-
-    def __repr__(self):  # pylint: disable=W0622
-        arr = [self.val]
-        while self.next:
-            self = self.next  # pylint: disable=W0642
-            arr.append(self.val)
-        return str(arr)
-
-
-class LinkedListFactory:  # pylint: disable=too-few-public-methods
-
-    """
-    Easy way to make linked list from array
-    """
-
-    @staticmethod
-    def create_from_array(array):
-        """
-        Turn array into linked list
-        """
-
-        if not array:
-            return None
-
-        head = ListNode(array[0])
-        current_node = head
-        for val in array[1:]:
-            current_node.next = ListNode(val)
-            current_node = current_node.next
-
-        return head
+from src.helper import ListNode, LinkedListFactory
 
 
 class Daily:  # pylint: disable=too-few-public-methods
     """
     Class to house daily leetcode challenges
     """
+
+    def num_subarray_with_sum(self, nums: list[int], goal: int) -> int:
+        """
+        Find number of subarrays that give the goal value in binary
+
+        Args:
+            nums list(int): array from which to search subarrays
+
+            goal int: number to which subarray needs to match when 
+            converted to binary
+
+        Returns:
+            int: number of subarrays that equal goal
+
+        >>> leet = Daily()
+        >>> leet.num_subarray_with_sum([0,0,0,0,0], 0)
+        15
+        
+        >>> leet.num_subarray_with_sum( nums = [1,0,1,0,1], goal=2)
+        4
+        """
+
+        count = {0: 1}
+        curr_sum = 0
+        total_subarrays = 0
+        
+        for num in nums:
+            curr_sum += num
+            if curr_sum - goal in count:
+                total_subarrays += count[curr_sum - goal]
+            count[curr_sum] = count.get(curr_sum, 0) + 1
+
+        return total_subarrays
+
+        # bin_goal = [int(i) for i in list(bin(goal)[2:])]
+        #
+        # subarrays = []
+        #
+        # for i in range(len(nums)-len(bin_goal)):
+        #     for j in range(len(nums)-len(bin_goal)):
+        #         subarray = nums[i : i + len(bin_goal) + j]
+        #
+        #         if subarray[len(subarray)-len(bin_goal):] == bin_goal:
+        #             subarrays.append(subarray)
+        #
+        # print(subarrays)
+        #
+        # return len(subarrays)
+        # 
+
 
     def pivot_integer(self, n: int) -> int:
         """
@@ -161,3 +169,5 @@ class Daily:  # pylint: disable=too-few-public-methods
 
         ordered += "".join(c_arr)
         return ordered
+
+

@@ -9,6 +9,41 @@ class SeventyFive:  # pylint: disable=too-few-public-methods
     Class to capture answers to leet code 75 challenges
     """
 
+    def max_operations(self, nums: list[int], k: int) -> int:
+        """
+        number of times pairs of numbers summing to k can be 
+        removed from nums
+
+        Args:
+            nums list[int]: pool of number that can be removed
+            k int: number to sum to
+
+        Returns:
+            int: number of times sum of pairs equal to k can be removed
+
+        >>> leet = SeventyFive()
+        >>> leet.max_operations(nums = [1,2,3,4], k = 5)
+        2
+        >>> leet.max_operations(nums = [3,1,3,4,3], k = 6)
+        1
+        """
+
+        count = 0
+        while nums:
+            
+            num = nums[0]
+            len_nums = len(nums)
+            nums = [n for n in nums if n != num]
+            delta = len_nums - len(nums)
+            len_nums = len(nums)
+            nums = [n for n in nums if n != k - num] 
+            delta_two = len_nums - len(nums) 
+            count += min(delta, delta_two)
+
+        return count         
+
+        
+
     def max_area(self, height: list[int]) -> int:
         """
         Gives max area of virtically filling a liquid
